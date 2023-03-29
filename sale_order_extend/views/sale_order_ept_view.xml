@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="view_sale_order_ept_tree" model="ir.ui.view">
+            <field name="name">Sale Order ept Tree View</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="is_all_picking_completed"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_sale_order_ept_form" model="ir.ui.view">
+            <field name="name">Sale Order ept Form View</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="date_order" position="after">
+                    <field name="crm_lead_ept_id"/>
+                    <field name="is_all_picking_completed"/>
+                </field>
+                <field name="sale_order_template_id" position="after">
+                    <field name="net_profit_value"/>
+                    <field name="net_profit_margin"/>
+                </field>
+                <field name="payment_term_id" position="after">
+                    <field name="product_tmpl_ids" widget='many2many_tags'
+                           options="{'no_create_edit': True,'color_field': 'color'}"/>
+                </field>
+                <field name="authorized_transaction_ids" position='after'>
+                    <button type='object' string='Manage Deposits' name='manage_deposit' class="btn-secondary"/>
+                    <button type="object" string="Filter Product" name="filter_product" class="btn-secondary"/>
+                    <button type="object" string="Confirm $ Validate" name="confirm_validate" class="btn-secondary"/>
+                </field>
+                <xpath expr="//page/field[@name='order_line']/tree/field[@name='qty_delivered']" position="after">
+                    <field name="cost_price"/>
+                    <field name="profit_value"/>
+                    <field name="warehouse_ept_id"/>
+                    <field name="history_unit_price"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="view_sale_order_ept_search" model="ir.ui.view">
+            <field name="name">Sale Order ept Search View</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <filter name="is_all_picking_completed" string="All Completed Order"
+                            domain="[('is_all_picking_completed','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="action_sale_order_line" model="ir.actions.act_window">
+            <field name="name">Sale Orderline Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>
+

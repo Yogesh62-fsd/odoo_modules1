@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--Creating the Security Group -->
+    <data>
+        <record id="crm_lead_demo_ept_category" model="ir.module.category">
+
+            <field name="name">Sales Person</field>
+            <field name="description">Help you provide the category realated to different category of the salesperson
+            </field>
+        </record>
+        <record id="crm_lead_demo_ept_group_salesperson" model="res.groups">
+            <field name="name">Sales Persons</field>
+            <!--            <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>-->
+            <field name="category_id" ref="crm_lead_demo_ept_category"/>
+        </record>
+        <record id="crm_lead_demo_ept_group_salesmanager" model="res.groups">
+            <field name="name">Sales Manager</field>
+            <field name="implied_ids" eval="[(4,ref('crm_lead_demo_ept_group_salesperson'))]"/>
+            <field name="category_id" ref="crm_lead_demo_ept_category"/>
+            <field name="users" eval="[(4,ref('base.user_root')),(4,ref('base.user_admin'))]"/>
+        </record>
+
+<!--Creating the Record Rules.......-->
+
+        <record id="crm_lead_demo_ept_salesperson_rule" model="ir.rule">
+            <field name="name">Crm Lead Demo Ept Sales Person</field>
+            <field name="model_id" ref="model_crm_lead_demo_ept"/>
+            <field name="domain_force">
+                [('channel','in',['Newspaper','Television','Call','SMS'])]
+            </field>
+            <field name="groups" eval="[(4,ref('crm_lead_demo_ept_group_salesperson'))]"/>
+        </record>
+        <record id="crm_lead_demo_ept_salesmanager_rule" model="ir.rule">
+            <field name="name">Crm Lead Demo Ept Sales Manager</field>
+            <field name="model_id" ref="model_crm_lead_demo_ept"/>
+            <field name="domain_force">[(1,'=',1)]
+            </field>
+            <field name="groups" eval="[(4,ref('crm_lead_demo_ept_group_salesmanager'))]"/>
+        </record>
+    </data>
+</odoo>
+        <!--[('channel','in',['Facebook', 'WhatsApp','Email','Newspaper', 'Television',
+                        'Phone','Call', 'SMS', 'Google Ads'])]-->

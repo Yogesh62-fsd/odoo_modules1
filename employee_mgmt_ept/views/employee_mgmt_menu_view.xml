@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <menuitem id="employee_mgmt_menu_root"
+                  name="Hr"/>
+        <menuitem id="employee_mgmt_submenu_root"
+                  name="Employees"
+                  parent="employee_mgmt_menu_root"/>
+    </data>
+</odoo>

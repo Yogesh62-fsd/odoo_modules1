@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_country_demo_ept_tree1" model="ir.ui.view">
+        <field name="name">res_country_demo_ept_tree1</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="id"/>
+<!--                <field name="partner_id"/>-->
+            </tree>
+        </field>
+    </record>
+    <record id="view_res_country_demo_ept_form1" model="ir.ui.view">
+        <field name="name">res_country_demo_ept_form1</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="active"/>
+                        <field name="id" readonly="1"/>
+
+<!--                        <field name="partner_id"/>-->
+
+                    </group>
+                    <group>
+                        <field name="create_date" readonly="1"/>
+                        <field name="write_date" readonly="1"/>
+                        <field name="create_uid" readonly="1"/>
+                        <field name="write_uid" readonly="1"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_res_country_demo_ept_search1" model="ir.ui.view">
+        <field name="name">res_country_demo_ept_search1</field>
+        <field name="model">res.country.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <filter name="filter_active" string="Inactive" domain='[("active", "=", False)]'/>
+                <filter name="filter_active" string="Active" domain='[("active","=",True)]'/>
+            </search>
+        </field>
+    </record>
+    <record id="res_country_demo_ept_action" model="ir.actions.act_window">
+        <field name="name">Country Demo EPT</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.country.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_res_country_demo_ept_search1"/>
+        <field name="help" type="html">
+            <p>Creating the new Country.</p>
+        </field>
+    </record>
+    <menuitem id="res_country_demo_ept"
+              name="country"
+              action="res_country_demo_ept_action"
+              parent="res_localization_demo_ept_submenu_root"/>
+</odoo>

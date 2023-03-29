@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_student_ept_tree" model="ir.ui.view">
+            <field name="name">Student Tree View</field>
+            <field name="model">student.ept</field>
+            <field name="arch" type="xml">
+                <tree string="Student Data">
+                    <field name="name"/>
+                    <field name="student_class"/>
+                    <field name="date_of_birth"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_student_ept_form" model="ir.ui.view">
+            <field name="name">Student Form View</field>
+            <field name="model">student.ept</field>
+            <field name="arch" type="xml">
+                <form string="Student Details">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="student_class"/>
+                            <field name="date_of_birth"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Student Course">
+                                <group>
+                                    <field name="course_ids">
+                                        <tree>
+                                            <field name="name"/>
+                                        </tree>
+                                    </field>
+                                </group>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_student_ept_search" model="ir.ui.view">
+            <field name="name">Student Search View</field>
+            <field name="model">student.ept</field>
+            <field name="arch" type="xml">
+                <search string="Student Data">
+                    <field name="name"/>
+                    <field name="student_class"/>
+                    <field name="date_of_birth"/>
+                </search>
+            </field>
+        </record>
+        <record id="student_ept_action" model="ir.actions.act_window">
+            <field name="name">Student EPT Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">student.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_student_ept_search"/>
+            <field name="help" type="html">
+                <div>
+                    <p>
+                        Creating the new Student Record.
+                    </p>
+                </div>
+            </field>
+        </record>
+        <menuitem id="student_ept_menu_root"
+                  name="Student Info"/>
+        <menuitem id="student_ept_submenu_root"
+                  name="Student Details"
+                  parent="student_ept_menu_root"/>
+        <menuitem id="student_ept"
+                  name="Students"
+                  action="student_ept_action"
+                  parent="student_ept_submenu_root"/>
+    </data>
+</odoo>

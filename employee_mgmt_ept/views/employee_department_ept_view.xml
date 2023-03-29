@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_employee_department_ept_tree" model="ir.ui.view">
+            <field name="name">Employee Deptartment Tree View</field>
+            <field name="model">employee.department.ept</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Tree">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_employee_department_ept_form" model="ir.ui.view">
+            <field name="name">Employee Deptartment Form View</field>
+            <field name="model">employee.department.ept</field>
+            <field name="arch" type="xml">
+                <form string="Employee Data">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="department_manager"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Department Employee Ids">
+                                <group>
+                                    <field name="employees_ids">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="gender"/>
+<!--                                            <field name="department_name"/>                                         -->
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_employee_department_ept_search" model="ir.ui.view">
+            <field name="name">Employee Deptartment Search View</field>
+            <field name="model">employee.department.ept</field>
+            <field name="arch" type="xml">
+                <search string="Employee Data">
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="employee_department_ept_action" model="ir.actions.act_window">
+            <field name="name">Employee Department Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">employee.department.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_employee_department_ept_search"/>
+            <field name="help" type="html">
+                <div>
+                    <p>Creating new Department</p>
+                </div>
+            </field>
+        </record>
+
+        <menuitem id="employee_department_ept"
+                  name="Department"
+                  action="employee_department_ept_action"
+                  parent="employee_mgmt_submenu_root"
+        />
+    </data>
+</odoo>

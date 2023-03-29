@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id='view_stock_warehouse_ept_tree' model="ir.ui.view">
+            <field name="name">Stock Warehoue Tree View</field>
+            <field name="model">stock.warehouse.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="short_code"/>
+                    <field name="address_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id='view_stock_warehouse_ept_form' model="ir.ui.view">
+            <field name="name">Stock Warehoue Form View</field>
+            <field name="model">stock.warehouse.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="short_code"/>
+                            </group>
+                            <group>
+                                <field name="address_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Stock Location">
+                                <group>
+                                    <field name="stock_location_id"/>
+                                </group>
+                            </page>
+                            <page string="View Location">
+                                <group>
+                                    <field name="view_location_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id='view_stock_warehouse_ept_search' model="ir.ui.view">
+            <field name="name">Stock Warehoue Search View</field>
+            <field name="model">stock.warehouse.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="short_code"/>
+                    <field name="address_id"/>
+                </search>
+            </field>
+        </record>
+        <record id="stock_warehouse_ept_action" model="ir.actions.act_window">
+            <field name="name">Stock Warehouse EPT Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.warehouse.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_stock_warehouse_ept_search"/>
+            <field name="help" type="html">
+                <p>
+                    Creating the New Warehouse.
+                </p>
+            </field>
+        </record>
+        <menuitem id="stock_warehouse_ept"
+                  name="Stock Warehouse"
+                  action="stock_warehouse_ept_action"
+                  parent="stock_warehouse_ept_submenu_root"/>
+    </data>
+</odoo>

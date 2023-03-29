@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_city_demo_ept_tree3" model="ir.ui.view">
+        <field name="name">res_city_demo_ept_tree3</field>
+        <field name="model">res.city.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="state_name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_res_city_demo_ept_search3" model="ir.ui.view">
+        <field name="name">res_city_demo_ept_search3</field>
+        <field name="model">res.city.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="state_name"/>
+                <filter name="filter_active" string="Active" domain="[('active','=',True)]"/>
+                <filter name="filter_inactive" string="InActive" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+    <record id="res_city_demo_ept_action" model="ir.actions.act_window">
+        <field name="name">City Demo EPT</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.city.demo.ept</field>
+        <field name="view_mode">tree,search</field>
+        <field name="search_view_id" ref="view_res_city_demo_ept_search3"/>
+           <field name="help" type="html">
+            <p>Creating the new City.</p>
+        </field>
+    </record>
+    <menuitem id="res_city_demo_ept"
+              name="City"
+              action="res_city_demo_ept_action"
+              parent="res_localization_demo_ept_submenu_root"/>
+</odoo>

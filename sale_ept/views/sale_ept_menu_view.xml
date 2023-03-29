@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="product_category_ept_menu_root"
+                  name="My SALES"
+                  />
+
+        <menuitem id="product_category_ept_submenu_root"
+                  name="Sales"
+                  parent="product_category_ept_menu_root"/>
+
+        <menuitem  id="crm_lead_ept_submenu_root"
+                  name="CRM"
+                  parent="product_category_ept_menu_root"/>
+
+        <menuitem id="stock_warehouse_ept_submenu_root"
+                  name="WareHouse"
+                  parent="product_category_ept_menu_root"/>
+    </data>
+</odoo>

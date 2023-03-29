@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="res_localization_demo_ept_menu_root"
+              name="Localization"/>
+    <menuitem id="res_localization_demo_ept_submenu_root"
+              name="Details"
+              parent="res_localization_demo_ept_menu_root"/>
+</odoo>

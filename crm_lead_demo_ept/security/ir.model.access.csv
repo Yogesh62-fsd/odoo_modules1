@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+crm_lead_demo_ept_salesperson,Crm Lead Demo Ept Salesperson,model_crm_lead_demo_ept,crm_lead_demo_ept_group_salesperson,1,1,1,0
+crm_lead_demo_ept_salesmanager,Crm Lead Demo Ept Salesperson Manager,model_crm_lead_demo_ept,crm_lead_demo_ept_group_salesmanager,1,1,1,1

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_product_ept_tree" model="ir.ui.view">
+            <field name="name">Product Ept Tree View</field>
+            <field name="model">product.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="sku" />
+                    <field name="cost_price" />
+                    <field name="product_type" />
+                    <field name="product_stock" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_product_ept_form" model="ir.ui.view">
+            <field name="name">Product Ept Form View</field>
+            <field name="model">product.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Product Stock Update" type="object" name="open_action" />
+                        <button string="Stock Update" type="action"
+                            name="%(product_update_stock_action)d" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="sku" />
+                                <field name="cost_price" />
+                                <field name="product_type" />
+                                <field name="sale_price" />
+                                <field name="product_stock" />
+                            </group>
+                            <group>
+                                <field name="weight" />
+                                <field name="length" />
+                                <field name="width" />
+                                <field name="volume" />
+                                <field name="barcode" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Product category id">
+                                <group>
+                                    <field name="category_id" />
+                                </group>
+                            </page>
+                            <page string="Product Uom">
+                                <group>
+                                    <field name="uom_id" />
+                                </group>
+                            </page>
+
+                            <page string="Product Description">
+                                <group>
+                                    <field name="description" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_ept_search" model="ir.ui.view">
+            <field name="name">Product Ept Search View</field>
+            <field name="model">product.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="sku" />
+                    <field name="barcode" />
+                </search>
+            </field>
+        </record>
+
+        <record id="product_ept_action" model="ir.actions.act_window">
+            <field name="name">Product Ept Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_product_ept_search" />
+            <field name="help" type="html">
+                <p>
+                    Creating the Product .
+                </p>
+            </field>
+        </record>
+        <menuitem id="product__ept"
+            name="Products"
+            action="product_ept_action"
+            parent="product_category_ept_submenu_root" />
+    </data>
+</odoo>

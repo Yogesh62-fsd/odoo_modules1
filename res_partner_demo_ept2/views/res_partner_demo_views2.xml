@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_partner_demo_ept2_tree2" model="ir.ui.view">
+        <field name="name">res_partner_demo_ept2_tree2</field>
+        <field name="model">res.partner.demo.ept2</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="street1"/>
+                <field name="street2"/>
+                <field name="city"/>
+                <field name="state"/>
+                <field name="zipcode"/>
+                <field name="country"/>
+                <field name="age"/>
+                <field name="is_spectacles"/>
+                <field name="details"/>
+                <field name="weight"/>
+                <field name="gender"/>
+                <field name="description"/>
+                <field name="photo"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_res_partner_demo_ept2_form2" model="ir.ui.view">
+        <field name="name">res_partner_demo_ept2_form2</field>
+        <field name="model">res.partner.demo.ept2</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="street1"/>
+                        <field name="street2"/>
+                        <field name="age"/>
+                        <field name="is_spectacles"/>
+                        <field name="gender"/>
+
+                    </group>
+                    <group>
+                        <field name="city"/>
+                        <field name="state"/>
+                        <field name="zipcode"/>
+                        <field name="country"/>
+                        <field name="details"/>
+                        <field name="weight"/>
+                        <field name="description"/>
+                        <field name="photo"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Partner Demo">
+                        <field name="details"/>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <record id="view_res_partner_demo_ept2_search2" model="ir.ui.view">
+        <field name="name">res_partner_demo_ept2_Search2</field>
+        <field name="model">res.partner.demo.ept2</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="city"/>
+                <field name="state"/>
+                <field name="zipcode"/>
+                <field name="country"/>
+                <filter name="filter_male" string="Male" domain="[('gender','=','Male')]"/>
+                <filter name="filter_female" string="Female" domain="[('gender','=','Female')]"/>
+                <filter name="filter_transgender" string="Transgender" domain="[('gender','=','Transgender')]"/>
+                <filter name="filter_spectacles" string="Spectacles" domain="[('is_spectacles','=','True')]"/>
+                <group string="Group By">
+                    <filter name="filter_city" string="City" context="{'group_by':'city'}"/>
+                    <filter name="filter_state" string="State" context="{'group_by':'state'}"/>
+                    <filter name="filter_zipcode" string="Zipcode" context="{'group_by':'zipcode'}"/>
+                    <filter name="filter_country" string="Country" context="{'group_by':'country'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="res_partner_demo_ept2_action2" model="ir.actions.act_window">
+        <field name="name">Partner Demo EPT2</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner.demo.ept2</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_res_partner_demo_ept2_search2"/>
+        <field name="context">{'default_gender':'Male'}</field>
+        <field name="help" type="html">
+            <p>
+                Creating the new contact.
+            </p>
+        </field>
+    </record>
+    <menuitem id="res_partner_demo_ept2_menu_root"
+              name="Contact2"/>
+    <menuitem id="res_partner_demo_ept2_submenu"
+              name="Customer Details"
+              parent="res_partner_demo_ept2_menu_root"/>
+    <menuitem id="res_partner_demo_ept2"
+              name="Customer"
+              parent="res_partner_demo_ept2_submenu"
+              action="res_partner_demo_ept2_action2"/>
+</odoo>

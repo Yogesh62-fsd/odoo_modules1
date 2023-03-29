@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_crm_lead_line_ept_tree" model="ir.ui.view">
+            <field name="name">Crm Lead Line ept Tree view</field>
+            <field name="model">crm.lead.line.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="expected_sell_qty"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_crm_lead_line_ept_form" model="ir.ui.view">
+            <field name="name">Crm Lead Line ept Form view</field>
+            <field name="model">crm.lead.line.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="product_id"/>
+
+                                <field name="expected_sell_qty"/>
+                            </group>
+                            <group>
+                                <field name="uom_id"/>
+                                <field name="lead_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string=" Product Description">
+                                <group>
+                                    <field name="name"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_crm_lead_line_ept_search" model="ir.ui.view">
+            <field name="name">Crm Lead Line ept Search view</field>
+            <field name="model">crm.lead.line.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="product_id"/>
+                    <field name="uom_id"/>
+                    <field name="lead_id"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="crm_lead_line_ept_action" model="ir.actions.act_window">
+            <field name="name">Crm Lead Line Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">crm.lead.line.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_crm_lead_line_ept_search"/>
+            <field name="help" type="html">
+                <p>
+                    Creating the new lead line.
+                </p>
+            </field>
+        </record>
+        <menuitem id="crm_lead_line_ept"
+                  name="Crm Lead Line"
+                  action="crm_lead_line_ept_action"
+                  parent="crm_lead_ept_submenu_root"/>
+    </data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="res_localization_ept_menu_root"
+                  name="Localization EPT"/>
+        <menuitem id="res_localization_ept_submenu_root"
+                  name="Localization Details"
+                  parent="res_localization_ept_menu_root"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_stock_inventory_ept_tree" model="ir.ui.view">
+            <field name="name">Stock Inventory Ept Tree View</field>
+            <field name="model">stock.inventory.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="location_id"/>
+                    <field name="inventory_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_stock_inventory_ept_form" model="ir.ui.view">
+            <field name="name">Stock Inventory Ept Form View</field>
+            <field name="model">stock.inventory.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Start Inventory" type="object" name="start_inventory"
+                               attrs="{'invisible':[('state','!=','draft')]}"/>
+                        <button string="Validate Inventory" type="object" name="validate_inventory" attrs="{'invisible':[('state','!=','in-progress')]}"/>
+                        <button string="Cancel Inventory" type="object" name="cancel_inventory" attrs="{'invisible':[('state','not in',['draft','in-progress'])]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="state" />
+                            </group>
+                            <group>
+                                <field name="location_id"/>
+                                <field name="inventory_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Inventory lines">
+                                <group>
+                                    <field name="inventory_line_ids">
+                                        <tree editable="True">
+                                            <field name="product_id"/>
+                                            <field name="available_qty"/>
+                                            <field name="counted_product_qty"/>
+                                            <field name="difference"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Stock Moves">
+                                <group>
+                                    <field name="stock_move_ids"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_stock_inventory_ept_search" model="ir.ui.view">
+            <field name="name">Stock Inventory Ept Search View</field>
+            <field name="model">stock.inventory.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="location_id"/>
+                    <field name="inventory_date"/>
+                </search>
+            </field>
+        </record>
+        <record id="stock_inventory_ept_action" model="ir.actions.act_window">
+            <field name="name">Stock Inventory Ept Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.inventory.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_stock_inventory_ept_search"/>
+            <field name="help" type="html">
+                <div>
+                    <p>
+                        Creating new Inventory .
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <menuitem id="stock_inventory_ept"
+                  name="Inventory"
+                  action="stock_inventory_ept_action"
+                  parent="stock_warehouse_ept_submenu_root"/>
+    </data>
+</odoo>

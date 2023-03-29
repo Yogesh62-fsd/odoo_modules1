@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_product_extd_form" model="ir.ui.view">
+            <field name="name">Product Extd Form View</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="deposit_product_id"/>
+                    <field name="deposit_product_qty"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

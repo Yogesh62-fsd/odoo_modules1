@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_res_state_demo_ept_tree2" model="ir.ui.view">
+        <field name="name">res_state_demo_ept_tree2</field>
+        <field name="model">res.state.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="country_name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_res_state_demo_ept_form2" model="ir.ui.view">
+        <field name="name">res_state_demo_ept_form2</field>
+        <field name="model">res.state.demo.ept</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="country_name"/>
+                    </group>
+                    <group>
+                        <field name="active"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="view_res_state_demo_ept_search2" model="ir.ui.view">
+        <field name="name">res_state_demo_ept_search2</field>
+        <field name="model">res.state.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <filter name="filter_active" string="Inactive" domain='[("active", "=", False)]'/>
+                <filter name="filter_active" string="Active" domain='[("active","=",True)]'/>
+                <group string="Group By">
+                    <filter name="filter_country_name" string="Country Name" context="{'group_by':'country_name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="res_state_demo_ept_action" model="ir.actions.act_window">
+        <field name="name">State Demo EPT</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.state.demo.ept</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="search_view_id" ref="view_res_state_demo_ept_search2"/>
+         <field name="help" type="html">
+            <p>Creating the new Country.</p>
+        </field>
+    </record>
+    <menuitem id="res_state_demo_ept"
+              name="States"
+              action="res_state_demo_ept_action"
+              parent="res_localization_demo_ept_submenu_root"/>
+</odoo>

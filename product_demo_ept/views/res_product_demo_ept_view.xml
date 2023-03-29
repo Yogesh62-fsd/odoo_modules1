@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_res_product_demo_ept_tree" model="ir.ui.view">
+        <field name="name">res_product_demo_ept_tree</field>
+        <field name="model">res.product.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="default_code" />
+                <field name="barcode" />
+                <field name="product_type" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_res_product_demo_ept_form" model="ir.ui.view">
+        <field name="name">res_product_demo_ept_form</field>
+        <field name="model">res.product.demo.ept</field>
+        <field name="arch" type="html">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="default_code" />
+                        </group>
+                        <group>
+                            <field name="barcode" />
+                            <field name="product_type" widget="radio" />
+                        </group>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="Product Details">
+                        <field name="website_description" string="Product Description" />
+                    </page>
+                    <page string="Product Note">
+                        <group>
+                            <field name="internal_note" string="Product Note" />
+                        </group>
+                        <group>
+                            <field name="product_image" string="Product Image" widget="image" />
+                        </group>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <record id="view_res_product_demo_ept_search" model="ir.ui.view">
+        <field name="name">res_product_demo_ept_search</field>
+        <field name="model">res.product.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="default_code" />
+                <field name="barcode" />
+                <field name="can_sold" />
+                <field name="product_type" widget="radio" />
+            </search>
+        </field>
+    </record>
+    <record id="res_product_demo_ept_action" model="ir.actions.act_window">
+        <field name="name">Product Demo EPT</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.product.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_res_product_demo_ept_search" />
+        <field name="help" type="html">
+            <p>
+                Creating the new Product
+            </p>
+        </field>
+    </record>
+    <menuitem id="res_product_demo_ept_menu_root"
+        name="My Sales" />
+    <menuitem id="res_product_demo_ept_submenu"
+        name="Products"
+        parent="res_product_demo_ept_menu_root"
+        action="res_product_demo_ept_action" />
+
+</odoo>

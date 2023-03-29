@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id='view_stock_picking_ept_tree' model="ir.ui.view">
+            <field name="name">Stock Picking Tree View</field>
+            <field name="model">stock.picking.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="transaction_type"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id='view_stock_picking_ept_form' model="ir.ui.view">
+            <field name="name">Stock Picking Form View</field>
+            <field name="model">stock.picking.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Validate Order" name="validate_order" type="object"
+                                attrs="{'invisible':[('state','!=','draft')]}"/>
+                        <button string="Cancel Order" name="cancel_order" type="object"
+                                attrs="{'invisible':[('state','!=','draft')]}"/>
+                        <field name="state" widget="statusbar" clickable="1"
+                               statusbar_visible="draft,done,cancelled"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="partner_id"/>
+                            </group>
+                            <group>
+                                <field name="transaction_type"/>
+                                <field name="transaction_date"/>
+                                <field name="back_order_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Picking">
+                                <group>
+                                    <field name="move_ids">
+                                        <tree editable="True">
+                                            <field name="product_id"/>
+                                            <field name="name"/>
+                                            <field name="qty_to_deliver"/>
+                                            <field name="qty_done"/>
+                                            <field name="state"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Purchase Order">
+                                <group>
+                                    <field name="purchase_order_id"/>
+                                </group>
+                            </page>
+                            <page string="Sale Order">
+                                <group>
+                                    <field name="sale_order_id"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id='view_stock_picking_ept_search' model="ir.ui.view">
+            <field name="name">Stock Picking Search View</field>
+            <field name="model">stock.picking.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+        <record id="stock_picking_ept_action1" model="ir.actions.act_window">
+            <field name="name">Stock Picking EPT Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_stock_picking_ept_search"/>
+            <field name="domain">[('transaction_type', '=', 'In')]</field>
+            <field name="help" type="html">
+                <p>
+                    Creating the New Stock Location.
+                </p>
+            </field>
+        </record>
+        <record id="stock_picking_ept_action2" model="ir.actions.act_window">
+            <field name="name">Stock Picking EPT Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.picking.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_stock_picking_ept_search"/>
+            <field name="domain">[('transaction_type', '=', 'Out')]</field>
+            <field name="help" type="html">
+                <p>
+                    Creating the New Stock Location.
+                </p>
+            </field>
+        </record>
+        <menuitem id="stock_picking_ept"
+                  name="Stock Picking"
+                  parent="stock_warehouse_ept_submenu_root"/>
+
+        <menuitem id="stock_picking_submenu1"
+                  name="Incoming Shipments"
+                  action="stock_picking_ept_action1"
+                  parent="stock_picking_ept"/>
+
+        <menuitem id="stock_picking_submenu2"
+                  name="Delivery Orders"
+                  action="stock_picking_ept_action2"
+                  parent="stock_picking_ept"/>
+    </data>
+</odoo>

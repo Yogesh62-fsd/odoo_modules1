@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="first_partner_demo_ept1" model="res.partner.demo.ept1">
+            <field name="name">Yogesh Pandey</field>
+            <field name="email">yogesh@company.com</field>
+            <field name="street1">Jay Residency</field>
+            <field name="street2">Krishna Medical</field>
+            <field name="city">Rajkot</field>
+            <field name="state">Gujarat</field>
+            <field name="zipcode">300058</field>
+            <field name="country">India</field>
+        </record>
+        <record id="second_partner_demo_ept1" model="res.partner.demo.ept1">
+            <field name="name">Rajesh shah</field>
+            <field name="email">rajesh@dummy.com</field>
+            <field name="street1">cws colony</field>
+            <field name="street2">Jayant</field>
+            <field name="city">singrauli</field>
+            <field name="state">madhyapradesh</field>
+            <field name="zipcode">486887</field>
+            <field name="country">india</field>
+        </record>
+        <record id="third_partner_demo_ept1" model="res.partner.demo.ept1">
+            <field name="name">Raj</field>
+            <field name="email">raj@dummy.com</field>
+            <field name="street1">vasant colony</field>
+            <field name="street2">TT nagar</field>
+            <field name="city">singrauli</field>
+            <field name="state">madhyapradesh</field>
+            <field name="zipcode">486887</field>
+            <field name="country">india</field>
+        </record>
+        <record id="four_partner_demo_ept1" model="res.partner.demo.ept1">
+            <field name="name">Praveen Pandey</field>
+            <field name="email">praveen@dummy.com</field>
+            <field name="street1">dudhichua colony</field>
+            <field name="street2">patel nagar</field>
+            <field name="city">singrauli</field>
+            <field name="state">madhyapradesh</field>
+            <field name="zipcode">486887</field>
+            <field name="country">india</field>
+        </record>
+    </data>
+</odoo>

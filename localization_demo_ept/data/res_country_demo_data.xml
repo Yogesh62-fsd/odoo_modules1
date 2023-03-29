@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="first_res_country_demo_ept" model="res.country.demo.ept">
+            <field name="name">India</field>
+            <field name="code">91234</field>
+            <field name="id">101010</field>
+        </record>
+         <record id="second_res_country_demo_ept" model="res.country.demo.ept">
+            <field name="name">America</field>
+            <field name="code">51234</field>
+            <field name="id">987010</field>
+        </record>
+         <record id="third_res_country_demo_ept" model="res.country.demo.ept">
+            <field name="name">Germany</field>
+            <field name="code">7894</field>
+            <field name="id">56410</field>
+        </record>
+         <record id="four_res_country_demo_ept" model="res.country.demo.ept">
+            <field name="name">Japan</field>
+            <field name="code">61234</field>
+            <field name="id">789810</field>
+        </record>
+         <record id="five_res_country_demo_ept" model="res.country.demo.ept">
+            <field name="name">china</field>
+            <field name="code">45234</field>
+            <field name="id">898710</field>
+        </record>
+    </data>
+</odoo>

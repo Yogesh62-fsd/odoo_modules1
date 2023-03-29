@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id='view_product_uom_ept_tree' model="ir.ui.view">
+            <field name="name">Product Uom EPT Tree</field>
+            <field name="model">product.uom.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+          <record id='view_product_uom_ept_form' model="ir.ui.view">
+            <field name="name">Product Uom EPT Form</field>
+            <field name="model">product.uom.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="uom_category_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id='view_product_uom_ept_search' model="ir.ui.view">
+            <field name="name">Product Uom EPT Search</field>
+            <field name="model">product.uom.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                </search>
+            </field>
+        </record>
+        <record id="product_uom_ept_action" model="ir.actions.act_window">
+            <field name="name">Product Uom EPT Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.uom.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_product_uom_ept_search"/>
+            <field name="help" type="html">
+                <p>
+                    Creating the new product uom ept
+                </p>
+            </field>
+        </record>
+            <menuitem id="product_uom_ept"
+                      name="Product UOM EPT"
+                      action="product_uom_ept_action"
+                      parent="product_category_ept_submenu_root"/>
+    </data>
+</odoo>

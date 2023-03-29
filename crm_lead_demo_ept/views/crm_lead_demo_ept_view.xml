@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_crm_lead_demo_ept_tree" model="ir.ui.view">
+
+        <field name="name">crm_lead_demo_ept_tree</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state=='Won'" decoration-danger="state=='Lost'"
+                  decoration-warning="state=='Proposition'">
+                <field name="name"/>
+                <field name="customer_email"/>
+                <field name="customer_phone"/>
+                <field name="expected_revenue"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_crm_lead_demo_ept_form" model="ir.ui.view">
+        <field name="name">crm_lead_demo_ept_form</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                        <field name="state" widget="statusbar" clickable="1" statusbar_visible="New,Qualified,Propostion,Won,Lost"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="customer_email"/>
+                            <field name="customer_phone"/>
+                            <field name="expected_revenue"/>
+                            <field name="sales_person"/>
+                            <field name="sales_team"/>
+
+                        </group>
+                        <group>
+                            <field name="next_followup_date"/>
+                            <field name="won_date"/>
+                            <field name="campaign"/>
+                            <field name="channel"/>
+
+                        </group>
+                    </group>
+                </sheet>
+                <notebook>
+                    <page string="Crm Lead Demo Lost Reason">
+                        <group>
+                            <field name="lost_reason"/>
+                        </group>
+
+                    </page>
+                </notebook>
+
+            </form>
+        </field>
+    </record>
+    <record id="view_crm_lead_demo_ept_search" model="ir.ui.view">
+        <field name="name">crm_lead_demo_ept_search</field>
+        <field name="model">crm.lead.demo.ept</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="customer_email"/>
+                <field name="customer_phone"/>
+                <filter name="filter_today" string="Follow up date"
+                        domain="[('next_followup_date','=',context_today().strftime('%Y-%m-%d'))]"/>
+                <group string="Group By">
+                    <filter name="filter_channel" string="Channel" context="{'group_by':'channel'}"/>
+                </group>
+            </search>
+        </field>
+
+    </record>
+    <record id="crm_lead_demo_ept_action" model="ir.actions.act_window">
+
+        <field name="name">Crm Lead Demo EPT</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.lead.demo.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_crm_lead_demo_ept_search"/>
+        <field name="help" type="html">
+            <p>
+                Creating the new Customer.
+            </p>
+        </field>
+    </record>
+    <menuitem id="crm_lead_demo_ept_menu_root"
+              name="Crm Customer"
+    />
+    <menuitem id="crm_lead_demo_ept_submenu_root"
+              name="Customer Details"
+              parent="crm_lead_demo_ept_menu_root"/>
+    <menuitem id="crm_lead_demo_ept"
+              name="SalesPerson"
+              parent="crm_lead_demo_ept_submenu_root"
+              action="crm_lead_demo_ept_action"/>
+
+</odoo>

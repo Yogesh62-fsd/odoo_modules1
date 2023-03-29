@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_res_country_ept_tree" model="ir.ui.view">
+            <field name="name">Country Tree View</field>
+            <field name="model">res.country.ept</field>
+            <field name="arch" type="xml">
+                <tree string="Countries Details">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_res_country_ept_form" model="ir.ui.view">
+            <field name="name">Country Form View</field>
+            <field name="model">res.country.ept</field>
+            <field name="arch" type="xml">
+                <form string="Country Data">
+                       <header>
+                           <button name="get_details" string="Details" type="object"/>
+                       </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                           <notebook>
+                            <page string="States">
+                                <field name="state_ids"/>
+                            </page>
+                    </notebook>
+                    </sheet>
+
+
+                </form>
+            </field>
+
+        </record>
+
+        <record id="view_res_country_ept_search" model="ir.ui.view">
+            <field name="name">Country Search View</field>
+            <field name="model">res.country.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="code"/>
+                </search>
+            </field>
+
+        </record>
+        <record id="res_country_ept_action" model="ir.actions.act_window">
+            <field name="name">Country EPT Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.country.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_res_country_ept_search"/>
+            <field name="help" type="html">
+                <div>
+                    <p>
+                        Creating Country Record.
+                    </p>
+                </div>
+            </field>
+        </record>
+        <menuitem id="res_country_ept"
+                  name="Countries"
+                  action="res_country_ept_action"
+                  parent="res_localization_ept_submenu_root"/>
+    </data>
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_res_city_ept_tree" model="ir.ui.view">
+            <field name="name">City Tree View</field>
+            <field name="model">res.city.ept</field>
+            <field name="arch" type="xml">
+                <tree string="City Data" editable="bottom">
+                    <field name="name"/>
+                    <field name="state_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_res_city_ept_search" model="ir.ui.view">
+            <field name="name">City Search View</field>
+            <field name="model">res.city.ept</field>
+            <field name="arch" type="xml">
+                <search string="City Details">
+                    <field name="name"/>
+                    <field name="state_id"/>
+                    <group string="Group by">
+                        <filter name="filter_state" string="State" context="{'groupby':'state_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="res_city_ept_action" model="ir.actions.act_window">
+            <field name="name">City Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.city.ept</field>
+            <field name="view_mode">tree</field>
+            <field name="search_view_id" ref="view_res_city_ept_search"/>
+            <field name="help" type="html">
+                <div>
+                    <p>
+                        Creating City.
+                    </p>
+                </div>
+            </field>
+        </record>
+        <menuitem id="res_city_ept"
+                  name="City"
+                  action="res_city_ept_action"
+                  parent="res_localization_ept_submenu_root"
+        />
+    </data>
+</odoo>

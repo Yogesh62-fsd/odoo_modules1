@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="res_partner_demo_ept3_demofirst" model="res.partner.demo.ept3">
+            <field name="name">Roshni Malik</field>
+                <field name="email">roshni@gmail.com</field>
+                <field name="street1">patel nagar</field>
+                <field name="street2">near oriental colloge</field>
+                <field name="city">Bhopal</field>
+                <field name="state">Madhya Pradesh</field>
+                <field name="zipcode">462002</field>
+                <field name="country">india</field>
+        </record>
+         <record id="res_partner_demo_ept3_demosecond" model="res.partner.demo.ept3">
+            <field name="name">Suresh Sharma</field>
+                <field name="email">suresh@gmail.com</field>
+                <field name="street1">anandnagar</field>
+                <field name="street2">near ratnagiri bypass</field>
+                <field name="city">Bhopal</field>
+                <field name="state">Madhya Pradesh</field>
+                <field name="zipcode">462002</field>
+                <field name="country">india</field>
+        </record>
+         <record id="res_partner_demo_ept3_demothird" model="res.partner.demo.ept3">
+            <field name="name">Nitesh Shahni</field>
+                <field name="email">nitesh@gmail.com</field>
+                <field name="street1">bina project </field>
+                <field name="street2">minus Quartes</field>
+                <field name="city">Sonebhdra</field>
+                <field name="state">Uttar Pradesh</field>
+                <field name="zipcode">662002</field>
+                <field name="country">india</field>
+        </record>
+         <record id="res_partner_demo_ept3_demofour" model="res.partner.demo.ept3">
+            <field name="name">Ritik Malik</field>
+                <field name="email">ritik@gmail.com</field>
+                <field name="street1">patel nagar</field>
+                <field name="street2">near oriental colloge</field>
+                <field name="city">Bhopal</field>
+                <field name="state">Madhya Pradesh</field>
+                <field name="zipcode">462002</field>
+                <field name="country">india</field>
+        </record>
+
+    </data>
+</odoo>

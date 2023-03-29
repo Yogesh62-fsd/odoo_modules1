@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_sale_order_ept_tree" model="ir.ui.view">
+            <field name="name">Sale Order EPT Tree</field>
+            <field name="model">sale.order.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="sale_order_date"/>
+                    <field name="total_weight"/>
+                    <field name="total_volume"/>
+                    <field name="order_total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sale_order_ept_form" model="ir.ui.view">
+            <field name="name">Sale Order EPT Form</field>
+            <field name="model">sale.order.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="confirm_sale_order" string="Confirm Order" type="object"/>
+                        <field name="state" widget="statusbar" clickable="1"
+                               statusbar_visible="draft,confirmed,done,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+
+                            <button name="delivery_order" type="object"
+                                    icon="fa-truck">
+                                <field name="delivery_count" widget="statinfo"/>
+                            </button>
+                            <button name="stock_moves" type="object"
+                                    icon="fa-truck">
+                                <field name="stock_move_count" widget="statinfo"/>
+                            </button>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="sale_order_date"/>
+                                <field name="total_weight"/>
+                                <field name="total_volume"/>
+                                <field name="order_total"/>
+                                <field name="warehouse_id"/>
+                            </group>
+                            <group>
+                                <field name="sales_person_id"/>
+                                <field name="customer_id" domain="[('parent_id','=',False)]"/>
+                                <field name="invoice_customer_id"
+                                       domain="[('address_type','ilike','Invoice'),('parent_id','=','parent_id')]"/>
+                                <field name="shipping_customer_id"
+                                       domain="[('address_type','ilike','Shipping'),('parent_id','=','parent_id')]"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Order Lines">
+                                <group>
+                                    <field name="order_line_ids">
+                                        <tree editable="True">
+                                            <field name="product_id"/>
+                                            <field name="unit_price"/>
+                                            <field name="quantity"/>
+                                            <field name="uom_id"/>
+                                            <field name="delivered_qty"/>
+                                            <field name="cancelled_qty"/>
+                                            <field name="subtotal_without_tax"/>
+                                            <field name="warehouse_id"/>
+                                            <field name="stock_move_ids"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Sale Order Lead">
+                                <group>
+                                    <field name="lead_id"/>
+                                </group>
+                            </page>
+                            <page string="Picking">
+                                <group>
+                                    <field name="picking_ids">
+                                        <tree editable="True">
+                                            <field name="name"/>
+                                            <field name="transaction_date"/>
+                                            <field name="state"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_sale_order_ept_search" model="ir.ui.view">
+            <field name="name">Sale Order EPT Search</field>
+            <field name="model">sale.order.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="customer_id"/>
+                    <field name="sale_order_date"/>
+
+                    <group string="Group By">
+                        <filter name="filter_customer" string="Customer" context="{'group_by':'customer_id'}"/>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="sale_order_action" model="ir.actions.act_window">
+            <field name="name">Sale Order Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_sale_order_ept_search"/>
+            <field name="help" type="xml">
+                <p>
+                    Creating new Sale Order.
+                </p>
+            </field>
+        </record>
+        <menuitem id="sale_order_ept"
+                  name=" Sale Order"
+                  action="sale_order_action"
+                  parent="product_category_ept_submenu_root"/>
+
+    </data>
+</odoo>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

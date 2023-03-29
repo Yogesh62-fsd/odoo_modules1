@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id='view_stock_warehouse_ept_tree' model="ir.ui.view">
+            <field name="name">Stock Location Tree View</field>
+            <field name="model">stock.location.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="location_type"/>
+                    <field name="is_scrap_location"/>
+                </tree>
+            </field>
+        </record>
+        <record id='view_stock_location_ept_form' model="ir.ui.view">
+            <field name="name">Stock Location Form View</field>
+            <field name="model">stock.location.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="location_type"/>
+                            </group>
+                            <group>
+                                <field name="is_scrap_location"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Parent Location">
+                                <group>
+                                    <field name="parent_id">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="location_type"/>
+                                            <field name="is_scrap_location"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id='view_stock_location_ept_search' model="ir.ui.view">
+            <field name="name">Stock Location Search View</field>
+            <field name="model">stock.location.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="location_type"/>
+                    <field name="is_scrap_location"/>
+                </search>
+            </field>
+        </record>
+        <record id="stock_location_ept_action" model="ir.actions.act_window">
+            <field name="name">Stock Location EPT Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.location.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_stock_location_ept_search"/>
+            <field name="help" type="html">
+                <p>
+                    Creating the New Stock Location.
+                </p>
+            </field>
+        </record>
+        <menuitem id="stock_location_ept"
+                  name="Stock Location"
+                  action="stock_location_ept_action"
+                  parent="stock_warehouse_ept_submenu_root"/>
+    </data>
+</odoo>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="view_crm_lead_ept_tree" model="ir.ui.view">
+            <field name="name">Crm lead ept tree view</field>
+            <field name="model">crm.lead.ept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="team_id"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                    <field name="won_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_crm_lead_ept_form" model="ir.ui.view">
+            <field name="name">Crm lead ept form view</field>
+            <field name="model">crm.lead.ept</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Qualified" type="object" name="change_state"
+                                attrs="{'invisible': [('state','!=', 'New')]}"/>
+                        <button string="Proposition" type="object" name="change_state"
+                                attrs="{'invisible': [('state','!=', 'Qualified')]}"/>
+                        <button string="Won" type="object" name="change_state_won"
+                                attrs="{'invisible': [('state','!=', 'Proposition')]}"/>
+                        <button string="Lost" type="object" name="change_state_lost"
+                                attrs="{'invisible': [('state','!=', 'Proposition')]}"/>
+                        <button string="Generate Sales Quotation" type="object" name="generate_quotation"
+                                attrs="{'invisible': [('state','!=', 'Won'),('partner_id','!=',True)]}"/>
+                        <button string="Generate New Customer" type="object" name="generate_new_customer"
+                                attrs="{'invisible': [('state','!=', 'Lost'),('partner_id','!=',False)]}"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="partner_id"/>
+                                <field name="team_id"/>
+                                <field name="user_id"/>
+                            </group>
+                            <group>
+                                <field name="state" invisible="1"/>
+                                <field name="won_date"/>
+                                <field name="next_followup_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lead Lost Reason" attrs="{'invisible': [('state','!=', 'Lost')]}">
+                                <group>
+                                    <field name="lost_reason"/>
+                                </group>
+
+                            </page>
+                            <page string="Orders">
+                                <group>
+                                    <field name="order_ids"/>
+                                </group>
+
+                            </page>
+                            <page string="Partner Details">
+                                <group>
+                                    <group>
+                                        <field name="partner_name"/>
+                                        <field name="partner_email"/>
+                                        <field name="partner_country_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="partner_state_id"/>
+                                        <field name="partner_city_id"/>
+                                    </group>
+                                </group>
+
+                            </page>
+                            <page string="Lead Lines">
+                                <group>
+                                    <field name="lead_line_ids">
+                                        <tree editable="True">
+                                            <field name="product_id"/>
+                                            <field name="expected_sell_qty"/>
+                                            <field name="name"/>
+                                            <field name="uom_id"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_crm_lead_ept_search" model="ir.ui.view">
+            <field name="name">Crm lead ept search view</field>
+            <field name="model">crm.lead.ept</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="team_id"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                    <field name="won_date"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="crm_lead_ept_action" model="ir.actions.act_window">
+            <field name="name">Crm lead ept action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">crm.lead.ept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_crm_lead_ept_search"/>
+            <field name="help" type="html">
+                <p>
+                    Creating crm lead ept.
+                </p>
+            </field>
+        </record>
+        <menuitem id="crm_lead_ept"
+                  name=" Crm Lead"
+                  action="crm_lead_ept_action"
+                  parent="crm_lead_ept_submenu_root"/>
+    </data>
+</odoo>

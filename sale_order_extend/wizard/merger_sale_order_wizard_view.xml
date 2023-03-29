@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_merge_sale_order_wizard_form" model="ir.ui.view">
+        <field name="name">Merge Sale Order Wizard Form</field>
+        <field name="model">merge.sale.order.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="merge_options"/>
+                        </group>
+                        <group>
+                            <field name="sale_order_id" options="{'no_open':True,'no_create':True}"
+                                   attrs="{'required': [('merge_options','in',['merge_existing_cancel','merge_existing_delete'])],'invisible':[('merge_options','in',['merge_create_cancel','merge_create_delete'])]}"
+                                   domain="[('id','in', active_ids)]"
+                            />
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Merge Order" name="create_order" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-primary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_merge_sale_order_wizard" model="ir.actions.act_window">
+        <field name="name">Merge Sale Order Wizard Action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">merge.sale.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_merge_sale_order_wizard_form"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sale_order_extend.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>
