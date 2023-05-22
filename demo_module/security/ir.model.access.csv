@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customer_ept_all_customer,Customer Ept All,model_customer_ept,group_all_customer_ept,1,1,1,0
+access_customer_ept_manager_customer,Customer Ept Manager,model_customer_ept,group_manager_customer_ept,1,1,1,1

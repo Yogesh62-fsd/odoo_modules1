@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+
+    <record id='customer_category_ept' model='ir.module.category'>
+        <field name='name'>Customer Category</field>
+        <field name='description'>This is customer ept catgory of security purpose</field>
+    </record>
+
+    <record id='group_all_customer_ept' model='res.groups'>
+        <field name='name'>All Customer Group</field>
+        <field name='category_id' ref='customer_category_ept' />
+    </record>
+    <record id='group_manager_customer_ept' model='res.groups'>
+        <field name='name'>Manager Customer Group</field>
+        <field name='implied_ids' eval="[(4,ref('group_all_customer_ept'))]" />
+        <field name='category_id' ref='customer_category_ept' />
+        <field name='users' eval="[(4,ref('base.user_root')),(4,ref('base.user_admin'))]" />
+    </record>
+
+</odoo>

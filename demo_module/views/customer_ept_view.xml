@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id='view_customer_ept_tree' model='ir.ui.view'>
+        <field name='name'>Customer Ept Tree View</field>
+        <field name='model'>customer.ept</field>
+        <field name='arch' type='xml'>
+            <tree>
+                <field name='name' />
+                <field name='email' />
+                <field name='mobile_no' />
+                <field name='gender' />
+                <field name='city' />
+                <field name='pincode' />
+                <field name='state' />
+                <field name='country' />
+            </tree>
+        </field>
+    </record>
+    <record id='view_customer_ept_form' model='ir.ui.view'>
+        <field name='name'>Customer Ept Form View</field>
+        <field name='model'>customer.ept</field>
+        <field name='arch' type='xml'>
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_childs" type="object"
+                            class="oe_stat_button" icon="fa-pencil-square-o">
+                            <field name="child_count" widget="statinfo" />
+
+                        </button>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name='name' />
+                            <field name='email' />
+                            <field name='mobile_no' />
+                            <field name='gender' />
+                        </group>
+                        <group>
+                            <field name='city' />
+                            <field name='pincode' />
+                            <field name='state' />
+                            <field name='country' />
+                            <field name='parent_id' />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string='Parent Customer'>
+                            <tree editable='True'>
+                                <field name='child_ids' />
+                            </tree>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id='view_customer_ept_search' model='ir.ui.view'>
+        <field name='name'>Customer Ept Search View</field>
+        <field name='model'>customer.ept</field>
+        <field name='arch' type='xml'>
+            <search>
+                <field name='name' />
+                <field name='city' />
+                <field name='state' />
+                <field name='country' />
+                <field name='gender' />
+                <group string='Group By'>
+                    <filter name='filter_city' string='City' context="{'group_by':'city'}" />
+                    <filter name='filter_state' string='State' context="{'group_by':'state'}" />
+                    <filter name='filter_country' string='Country' context="{'group_by':'country'}" />
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="customer_ept_action" model="ir.actions.act_window">
+        <field name="name">Customer EPT Action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">customer.ept</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_customer_ept_search" />
+
+        <field name="help" type="html">
+            <p>
+                Creating the Customer .
+            </p>
+        </field>
+    </record>
+
+    <menuitem id='main_customer_menu'
+        name='Customer '
+    />
+
+    <menuitem id="customer_ept_submenu"
+        name="Customer Detail"
+        parent="main_customer_menu" />
+
+
+    <menuitem id='customer_ept'
+        name='Customer'
+        action='customer_ept_action'
+        parent='customer_ept_submenu' />
+</odoo>
